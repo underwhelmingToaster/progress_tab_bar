@@ -1,0 +1,5 @@
+# Removing the build folder from the project
+build/
+
+# Removing all folders from example project except lib, ios and android
+example/*
