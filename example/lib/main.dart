@@ -41,13 +41,17 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            ProgressTab()
-          ],
-        ),
+      body: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(26),
+          child: ProgressTabBar(
+              children: [
+                ProgressTab(),
+                ProgressTab(),
+                ProgressTab(),
+              ]
+          ),
+        )
       ),
     );
   }

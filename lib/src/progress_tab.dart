@@ -6,13 +6,18 @@ import '../progress_tab_bar.dart';
 class ProgressTabState extends State<ProgressTab> {
   @override
   Widget build(BuildContext context) {
-    double size = 200;
+    double width = widget.width;
+
     return RawMaterialButton(
       child: CustomPaint(
-        size: Size(size,(size*0.3076923076923077).toDouble()),
+        size: Size(width,(width * 0.3076923076923077).toDouble()),
         painter: ButtonPainter(),
       ),
       onPressed: () { },
     );
+  }
+
+  double get width {
+    return widget.width;
   }
 }
