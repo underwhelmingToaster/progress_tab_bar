@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progress_tab_bar/progress_tab_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
-            Text("sampleText"),
+            ProgressTab()
           ],
         ),
       ),
