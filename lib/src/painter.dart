@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter_shapes/flutter_shapes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +20,22 @@ class ButtonPainter extends CustomPainter {
     arrowPath.lineTo(size.width*0.8461538,0);
 
     canvas.drawPath(arrowPath, arrow);
+
+    final ui.ParagraphBuilder paragraphBuilder = ui.ParagraphBuilder(
+        ui.ParagraphStyle(
+          textAlign: TextAlign.start,
+          fontSize: 20,
+          height: 1,
+        )
+    )
+      ..addText("sample text");
+    final ui.Paragraph paragraph = paragraphBuilder.build()
+      ..layout(ui.ParagraphConstraints(width: size.width - size.width * (0.15 + 0.15)));
+    canvas.drawParagraph(paragraph, Offset(size.width / 2 - paragraph.longestLine / 2, size.height / 2 - paragraph.height / 2));
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
-    throw UnimplementedError();
+   return true;
   }
 }
