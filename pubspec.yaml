@@ -1,5 +1,5 @@
 name: progress_tab_bar
-description: A tab bar which can display a process with multiple sub-steps.
+description: A flutter package which implements a tab bar for displaying sub-steps of a process in a sequence.
 version: 0.0.1
 repository: https://github.com/underwhelmingToaster/progress_tab_bar
 
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_shapes: ^0.3.0
 
 dev_dependencies:
   flutter_test:
