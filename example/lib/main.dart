@@ -40,30 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: ProgressTabBar(
-                spacing: 16,
-                children: [
-                  ProgressTab(
-                      onPressed: () {
-                        setState(() {
-                          _selectedTab = 0;
-                        });
-                      }
-                  ),
-                  ProgressTab(
-                      onPressed: () {
-                        setState(() {
-                          _selectedTab = 1;
-                        });
-                      }
-                  ),
-                  ProgressTab(
-                      onPressed: () {
-                        setState(() {
-                          _selectedTab = 2;
-                        });
-                      }
-                  ),
-                ],
+              spacing: 16,
+              children: [
+                ProgressTab(onPressed: () {
+                  setState(() {
+                    _selectedTab = 0;
+                  });
+                }),
+                ProgressTab(onPressed: () {
+                  setState(() {
+                    _selectedTab = 1;
+                  });
+                }),
+                ProgressTab(onPressed: () {
+                  setState(() {
+                    _selectedTab = 2;
+                  });
+                }),
+              ],
             ),
           ),
           Container(
@@ -74,12 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget content (int tabNr) {
+  Widget content(int tabNr) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Center(
-          child: Text("This is Tab Nr. ${tabNr.toString()}")
-      ),
+      child: Center(child: Text("This is Tab Nr. ${tabNr.toString()}")),
     );
   }
 }
