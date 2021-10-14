@@ -80,7 +80,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
   }
 
   double _calculateLength(ProgressTabBar widget) {
-    return widget.children.length * (widget.tabWidth - 25 + widget.spacing);
+    return widget.children.length * (widget.tabWidth - 25 + widget.spacing) + (12 * (widget.tabWidth/200));
   }
 }
 

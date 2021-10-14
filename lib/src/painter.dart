@@ -20,8 +20,8 @@ class ButtonPainter extends CustomPainter {
 
     Path arrowPath = Path();
     if(isFirst){
-      arrowPath.moveTo(size.width * 0.1, 0);
-      arrowPath.lineTo(size.width * 0.1, size.height);
+      arrowPath.moveTo(size.width * 0.08, 0);
+      arrowPath.lineTo(size.width * 0.08, size.height);
       arrowPath.lineTo(size.width * 0.8461538, size.height);
       arrowPath.lineTo(size.width, size.height * 0.5000000);
       arrowPath.lineTo(size.width * 0.8461538, 0);
@@ -33,10 +33,6 @@ class ButtonPainter extends CustomPainter {
       arrowPath.lineTo(size.width, size.height * 0.5000000);
       arrowPath.lineTo(size.width * 0.8461538, 0);
     }
-
-
-
-
     canvas.drawPath(arrowPath, arrow);
 
     final ui.ParagraphBuilder paragraphBuilder =

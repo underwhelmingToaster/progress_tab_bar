@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: ProgressTabBar(
               spacing: 16,
+              tabWidth: 200,
               children: [
                 ProgressTab(
                     label: "Label 0",
