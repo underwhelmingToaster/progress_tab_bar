@@ -65,6 +65,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         _selectedTab = 2;
                       });
                     }),
+                ProgressTab(
+                    label: "Label 3",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 3;
+                      });
+                    }),
+                ProgressTab(
+                    label: "Label 4",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 4;
+                      });
+                    }),
               ],
             ),
           ),

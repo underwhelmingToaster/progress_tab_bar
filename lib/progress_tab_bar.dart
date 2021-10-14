@@ -1,6 +1,7 @@
 library progress_tab_bar;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_tab_bar/src/progress_tab_button.dart';
 
@@ -42,6 +43,22 @@ class ProgressTabBar extends StatefulWidget {
   /// a elevated style.
   final int? selectedTab;
 
+  /// Using [scrollPhysics], the behaviour for scrolling through the tab bar can be configured.
+  final ScrollPhysics? scrollPhysics;
+
+  /// Set to false to turn off automatic centering of a tab when it is clicked.
+  /// Defaults to true.
+  final bool autoCenter;
+
+  /// Sets the duration of the centering animation.
+  /// Set to 0 for instant centering. Only takes effect when [autoCenter] is true.
+  /// Defaults to 0.6 seconds
+  final Duration animationDuration;
+
+  /// Set a [Curve] for the auto center animation.
+  /// Only takes effect when [autCenter] is true. Defaults to [Curves.fastOutSlowIn].
+  final Curve animationCurve;
+
   const ProgressTabBar(
       {Key? key,
       required this.children,
@@ -52,7 +69,12 @@ class ProgressTabBar extends StatefulWidget {
       this.color,
       this.labelColor,
       this.selectedLabelColor = Colors.white,
-      this.selectedTab})
+      this.selectedTab,
+      this.scrollPhysics,
+      this.autoCenter = true,
+      this.animationDuration = const Duration(milliseconds: 600),
+      this.animationCurve = Curves.fastOutSlowIn
+      })
       : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
@@ -61,9 +83,21 @@ class ProgressTabBar extends StatefulWidget {
 }
 
 class _ProgressTabBarState extends State<ProgressTabBar> {
+  ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
+    if(_scrollController.hasClients){
+      if(widget.autoCenter && widget.selectedTab != null && widget.animationDuration != Duration.zero){
+        _scrollController.animateTo(_calculateScrollOffset(widget), duration: widget.animationDuration, curve: widget.animationCurve);
+      } else if(widget.animationDuration == Duration.zero){
+        _scrollController.jumpTo(_calculateScrollOffset(widget));
+      }
+    }
+
     return SingleChildScrollView(
+        physics: widget.scrollPhysics,
+        controller: _scrollController,
         scrollDirection: Axis.horizontal,
         child: SizedBox(
             width: _calculateLength(widget),
@@ -137,6 +171,10 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
         (widget.children.length - 1) * widget.spacing // Space for spacing
         +
         (widget.tabWidth / 200) * 12; // Space for padding at end
+  }
+
+  double _calculateScrollOffset (ProgressTabBar widget){
+    return (widget.tabWidth - 31 + widget.spacing) * (widget.selectedTab! - 1);
   }
 }
 
