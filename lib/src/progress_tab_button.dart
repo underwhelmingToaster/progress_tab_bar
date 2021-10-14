@@ -14,19 +14,32 @@ class ProgressTabButton extends StatelessWidget {
   final bool filled;
 
   ProgressTabButton(
-      {required this.width, required this.height, required this.onPressed, required this.label, required this.position, required this.outlineWidth, required this.labelColor, required this.color, required this.filled});
+      {required this.width,
+      required this.height,
+      required this.onPressed,
+      required this.label,
+      required this.position,
+      required this.outlineWidth,
+      required this.labelColor,
+      required this.color,
+      required this.filled});
 
   @override
   Widget build(BuildContext context) {
     bool _isFirst = false;
-    if(position == 0){
+    if (position == 0) {
       _isFirst = true;
     }
     return RawMaterialButton(
       child: CustomPaint(
         isComplex: false,
         size: Size(width, height),
-        painter: ButtonPainter(label: label, isFirst: _isFirst, strokeWidth: outlineWidth, labelColor: labelColor, filled: filled),
+        painter: ButtonPainter(
+            label: label,
+            isFirst: _isFirst,
+            strokeWidth: outlineWidth,
+            labelColor: labelColor,
+            filled: filled),
       ),
       onPressed: onPressed,
     );

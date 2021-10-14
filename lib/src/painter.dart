@@ -21,7 +21,9 @@ class ButtonPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     PaintingStyle paintingStyle = PaintingStyle.stroke;
 
-    if(filled){ paintingStyle = PaintingStyle.fill; }
+    if (filled) {
+      paintingStyle = PaintingStyle.fill;
+    }
 
     Paint arrow = new Paint()
       ..color = Color.fromARGB(255, 33, 150, 243)
@@ -29,14 +31,14 @@ class ButtonPainter extends CustomPainter {
       ..strokeWidth = strokeWidth;
 
     Path arrowPath = Path();
-    if(isFirst){
+    if (isFirst) {
       arrowPath.moveTo(size.width * 0.08, 0);
       arrowPath.lineTo(size.width * 0.08, size.height);
       arrowPath.lineTo(size.width * 0.8461538, size.height);
       arrowPath.lineTo(size.width, size.height * 0.5000000);
       arrowPath.lineTo(size.width * 0.8461538, 0);
       arrowPath.close();
-    }else{
+    } else {
       arrowPath.moveTo(0, 0);
       arrowPath.lineTo(size.width * 0.1538462, size.height * 0.5000000);
       arrowPath.lineTo(0, size.height);
@@ -52,9 +54,9 @@ class ButtonPainter extends CustomPainter {
       textAlign: TextAlign.start,
       fontSize: 20,
       height: 1,
-    ))  ..pushStyle(ui.TextStyle(color: labelColor))
-        ..addText(label);
-
+    ))
+          ..pushStyle(ui.TextStyle(color: labelColor))
+          ..addText(label);
 
     final ui.Paragraph paragraph = paragraphBuilder.build()
       ..layout(ui.ParagraphConstraints(

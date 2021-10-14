@@ -42,18 +42,18 @@ class ProgressTabBar extends StatefulWidget {
   /// a elevated style.
   final int? selectedTab;
 
-  const ProgressTabBar({
-    Key? key,
-    required this.children,
-    this.tabWidth = 200,
-    double? height,
-    this.spacing = 15,
-    this.outlineWidth = 2,
-    this.color,
-    this.labelColor,
-    this.selectedLabelColor = Colors.white,
-    this.selectedTab
-  })  : height = height ?? tabWidth * 0.3076923076923077,
+  const ProgressTabBar(
+      {Key? key,
+      required this.children,
+      this.tabWidth = 200,
+      double? height,
+      this.spacing = 15,
+      this.outlineWidth = 2,
+      this.color,
+      this.labelColor,
+      this.selectedLabelColor = Colors.white,
+      this.selectedTab})
+      : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
   @override
@@ -66,33 +66,40 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SizedBox(
-          width: _calculateLength(widget),
-          height: widget.height + widget.outlineWidth + 1,
-          child: Padding(
-            padding: EdgeInsets.only(top: widget.outlineWidth / 2),
-            child: _stackBuilder(
-                    _buttonBuilder(
-                        tabs: widget.children,
-                        width: widget.tabWidth,
-                        height: widget.height,
-                        outlineWidth: widget.outlineWidth,
-                        selectedTab: widget.selectedTab,
-                        color: widget.color,
-                        labelColor: widget.labelColor,
-                        selectedLabelColor: widget.selectedLabelColor,
-                        context: context),
-                    widget.spacing),
-          )
-        ));
+            width: _calculateLength(widget),
+            height: widget.height + widget.outlineWidth + 1,
+            child: Padding(
+              padding: EdgeInsets.only(top: widget.outlineWidth / 2),
+              child: _stackBuilder(
+                  _buttonBuilder(
+                      tabs: widget.children,
+                      width: widget.tabWidth,
+                      height: widget.height,
+                      outlineWidth: widget.outlineWidth,
+                      selectedTab: widget.selectedTab,
+                      color: widget.color,
+                      labelColor: widget.labelColor,
+                      selectedLabelColor: widget.selectedLabelColor,
+                      context: context),
+                  widget.spacing),
+            )));
   }
 
-  List<ProgressTabButton> _buttonBuilder({required List<ProgressTab> tabs, required double width, required double height, required double outlineWidth,
-      int? selectedTab, Color? color, Color? labelColor, Color? selectedLabelColor, required BuildContext context}) {
+  List<ProgressTabButton> _buttonBuilder(
+      {required List<ProgressTab> tabs,
+      required double width,
+      required double height,
+      required double outlineWidth,
+      int? selectedTab,
+      Color? color,
+      Color? labelColor,
+      Color? selectedLabelColor,
+      required BuildContext context}) {
     List<ProgressTabButton> tabButtons = List.empty(growable: true);
     for (int i = 0; i < tabs.length; i++) {
       bool _filled = false;
       Color _tabLabelColor = labelColor ?? Colors.black;
-      if(selectedTab == i){
+      if (selectedTab == i) {
         _tabLabelColor = selectedLabelColor ?? _tabLabelColor;
         _filled = true;
       }
@@ -103,7 +110,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
         label: tabs[i].label ?? "",
         position: i,
         outlineWidth: outlineWidth,
-        labelColor: _tabLabelColor ,
+        labelColor: _tabLabelColor,
         color: color ?? Theme.of(context).primaryColor,
         filled: _filled,
       ));
@@ -125,10 +132,11 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
   }
 
   double _calculateLength(ProgressTabBar widget) {
-    return
-      widget.children.length * (widget.tabWidth - 20)   // Space for tabs
-      + (widget.children.length - 1) * widget.spacing   // Space for spacing
-      + (widget.tabWidth / 200) * 12;                   // Space for padding at end
+    return widget.children.length * (widget.tabWidth - 20) // Space for tabs
+        +
+        (widget.children.length - 1) * widget.spacing // Space for spacing
+        +
+        (widget.tabWidth / 200) * 12; // Space for padding at end
   }
 }
 
