@@ -42,21 +42,27 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ProgressTabBar(
               spacing: 16,
               children: [
-                ProgressTab(onPressed: () {
-                  setState(() {
-                    _selectedTab = 0;
-                  });
-                }),
-                ProgressTab(onPressed: () {
-                  setState(() {
-                    _selectedTab = 1;
-                  });
-                }),
-                ProgressTab(onPressed: () {
-                  setState(() {
-                    _selectedTab = 2;
-                  });
-                }),
+                ProgressTab(
+                    label: "Label 0",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 0;
+                      });
+                    }),
+                ProgressTab(
+                    label: "Label 1",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 1;
+                      });
+                    }),
+                ProgressTab(
+                    label: "Label 2",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 2;
+                      });
+                    }),
               ],
             ),
           ),
@@ -71,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget content(int tabNr) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Center(child: Text("This is Tab Nr. ${tabNr.toString()}")),
+      child: Center(child: Text("This is Page Nr. ${tabNr.toString()}")),
     );
   }
 }
