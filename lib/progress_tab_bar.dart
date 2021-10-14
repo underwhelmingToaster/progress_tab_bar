@@ -165,7 +165,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     );
   }
 
-  double _calculateLength(ProgressTabBar widget) {
+  double _calculateLength(ProgressTabBar widget) { // TODO better lenght
     return widget.children.length * (widget.tabWidth - 20) // Space for tabs
         +
         (widget.children.length - 1) * widget.spacing // Space for spacing
@@ -174,7 +174,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
   }
 
   double _calculateScrollOffset (ProgressTabBar widget){
-    return (widget.tabWidth - 31 + widget.spacing) * (widget.selectedTab! - 1);
+    return (widget.tabWidth - widget.tabWidth * 0.25 / 2 + widget.spacing / 2) * (widget.selectedTab! - 1) + widget.tabWidth / 2; // TODO better autocenter
   }
 }
 

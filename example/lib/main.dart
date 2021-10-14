@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(top: 16, bottom: 8),
             child: ProgressTabBar(
               tabWidth: 150,
+              height: 100,
               spacing: 20,
               selectedTab: _selectedTab,
               children: [
@@ -79,6 +80,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         _selectedTab = 4;
                       });
                     }),
+                ProgressTab(
+                    label: "Label 5",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 5;
+                      });
+                    }),
+                ProgressTab(
+                    label: "Label 6",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 6;
+                      });
+                    }),
+                ProgressTab(
+                    label: "Label 7",
+                    onPressed: () {
+                      setState(() {
+                        _selectedTab = 7;
+                      });
+                    }),
               ],
             ),
           ),
@@ -90,6 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
 
   Widget content(int tabNr) {
     return Padding(
