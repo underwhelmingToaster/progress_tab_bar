@@ -19,7 +19,7 @@ class ProgressTabBar extends StatefulWidget {
 
   /// [height] defines the height of the [ProgressTab] and therefore of the tab
   /// bar as a whole.
-  final double? height;
+  final double height;
 
   /// [spacing] sets the distance between [ProgressTab]s
   final double spacing;
@@ -41,28 +41,26 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         child: SizedBox(
-            child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SizedBox(
-                  width: _calculateLength(widget),
-                  height: widget.height,
-                  child: _stackBuilder(
-                      _buttonBuilder(
-                          widget.children, widget.tabWidth, widget.height),
-                      widget.spacing),
-                ))));
+          width: _calculateLength(widget),
+          height: widget.height,
+          child: _stackBuilder(
+              _buttonBuilder(widget.children, widget.tabWidth, widget.height),
+              widget.spacing),
+        ));
   }
 
   List<ProgressTabButton> _buttonBuilder(
-      List<ProgressTab> tabs, double width, double? height) {
+      List<ProgressTab> tabs, double width, double height) {
     List<ProgressTabButton> tabButtons = List.empty(growable: true);
-    for (ProgressTab tab in tabs) {
+    for (int i = 0; i < tabs.length; i++) {
       tabButtons.add(ProgressTabButton(
         width: width,
         height: height,
-        onPressed: tab.onPressed,
-        label: tab.label,
+        onPressed: tabs[i].onPressed,
+        label: tabs[i].label,
+        position: i,
       ));
     }
     return tabButtons;
