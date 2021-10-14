@@ -24,12 +24,35 @@ class ProgressTabBar extends StatefulWidget {
   /// [spacing] sets the distance between [ProgressTab]s
   final double spacing;
 
+  /// [outlineWidth] sets the size of the outline when a tab is not selected
+  final double outlineWidth;
+
+  /// [color] sets the color of the tab-outline as well as the tab color when tab
+  /// is selected.
+  final Color? color;
+
+  /// [labelColor] defines the color of the text in a not selected tab.
+  final Color? labelColor;
+
+  /// [selectedLabelColor] defines the color of the text in a selected tab. Only
+  /// has a effect when [selectedTab] is provided.
+  final Color selectedLabelColor;
+
+  /// When [selectedTab] is given, the currently selected tab is displayed with
+  /// a elevated style.
+  final int? selectedTab;
+
   const ProgressTabBar({
     Key? key,
     required this.children,
     this.tabWidth = 200,
     double? height,
     this.spacing = 15,
+    this.outlineWidth = 2,
+    this.color,
+    this.labelColor,
+    this.selectedLabelColor = Colors.white,
+    this.selectedTab
   })  : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
@@ -44,23 +67,45 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
         scrollDirection: Axis.horizontal,
         child: SizedBox(
           width: _calculateLength(widget),
-          height: widget.height,
-          child: _stackBuilder(
-              _buttonBuilder(widget.children, widget.tabWidth, widget.height),
-              widget.spacing),
+          height: widget.height + widget.outlineWidth + 1,
+          child: Padding(
+            padding: EdgeInsets.only(top: widget.outlineWidth / 2),
+            child: _stackBuilder(
+                    _buttonBuilder(
+                        tabs: widget.children,
+                        width: widget.tabWidth,
+                        height: widget.height,
+                        outlineWidth: widget.outlineWidth,
+                        selectedTab: widget.selectedTab,
+                        color: widget.color,
+                        labelColor: widget.labelColor,
+                        selectedLabelColor: widget.selectedLabelColor,
+                        context: context),
+                    widget.spacing),
+          )
         ));
   }
 
-  List<ProgressTabButton> _buttonBuilder(
-      List<ProgressTab> tabs, double width, double height) {
+  List<ProgressTabButton> _buttonBuilder({required List<ProgressTab> tabs, required double width, required double height, required double outlineWidth,
+      int? selectedTab, Color? color, Color? labelColor, Color? selectedLabelColor, required BuildContext context}) {
     List<ProgressTabButton> tabButtons = List.empty(growable: true);
     for (int i = 0; i < tabs.length; i++) {
+      bool _filled = false;
+      Color _tabLabelColor = labelColor ?? Colors.black;
+      if(selectedTab == i){
+        _tabLabelColor = selectedLabelColor ?? _tabLabelColor;
+        _filled = true;
+      }
       tabButtons.add(ProgressTabButton(
         width: width,
         height: height,
         onPressed: tabs[i].onPressed,
-        label: tabs[i].label,
+        label: tabs[i].label ?? "",
         position: i,
+        outlineWidth: outlineWidth,
+        labelColor: _tabLabelColor ,
+        color: color ?? Theme.of(context).primaryColor,
+        filled: _filled,
       ));
     }
     return tabButtons;

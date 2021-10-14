@@ -38,10 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(top: 16, bottom: 8),
             child: ProgressTabBar(
-              tabWidth: 200,
-              spacing: 30,
+              tabWidth: 150,
+              spacing: 20,
+              selectedTab: _selectedTab,
               children: [
                 ProgressTab(
                     label: "Label 0",
@@ -62,11 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       setState(() {
                         _selectedTab = 2;
+
                       });
                     }),
               ],
             ),
           ),
+          const Divider(),
           Container(
             child: content(_selectedTab),
           ),
