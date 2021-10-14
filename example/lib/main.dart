@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -28,10 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {
-    });
-  }
+  int _selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,24 +35,50 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(26),
-          child: ProgressTabBar(
-            spacing: 15,
-            children: [
-              ProgressTab(
-                onPressed: () {}
-              ),
-              ProgressTab(
-                onPressed: () {}
-              ),
-              ProgressTab(
-                onPressed: () {}
-              ),
-            ]
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: ProgressTabBar(
+                spacing: 16,
+                children: [
+                  ProgressTab(
+                      onPressed: () {
+                        setState(() {
+                          _selectedTab = 0;
+                        });
+                      }
+                  ),
+                  ProgressTab(
+                      onPressed: () {
+                        setState(() {
+                          _selectedTab = 1;
+                        });
+                      }
+                  ),
+                  ProgressTab(
+                      onPressed: () {
+                        setState(() {
+                          _selectedTab = 2;
+                        });
+                      }
+                  ),
+                ],
+            ),
           ),
-        )
+          Container(
+            child: content(_selectedTab),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget content (int tabNr) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 32),
+      child: Center(
+          child: Text("This is Tab Nr. ${tabNr.toString()}")
       ),
     );
   }
