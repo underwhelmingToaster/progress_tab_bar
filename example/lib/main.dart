@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Progress Tabs Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      theme: ThemeData(),
       home: const MyHomePage(title: 'Progress Tabs Demo'),
     );
   }
@@ -41,15 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Center(
+      body: Center(
         child: Padding(
-          padding: EdgeInsets.all(26),
+          padding: const EdgeInsets.all(26),
           child: ProgressTabBar(
-              children: [
-                ProgressTab(),
-                ProgressTab(),
-                ProgressTab(),
-              ]
+            spacing: 15,
+            children: [
+              ProgressTab(
+                onPressed: () {}
+              ),
+              ProgressTab(
+                onPressed: () {}
+              ),
+              ProgressTab(
+                onPressed: () {}
+              ),
+            ]
           ),
         )
       ),
