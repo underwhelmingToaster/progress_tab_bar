@@ -1,7 +1,9 @@
 # progress_tab_bar
 A flutter package which implements a tab bar for displaying sub-steps of a process in a sequence.
 
-![Example](https://raw.githubusercontent.com/underwhelmingToaster/progress_tab_bar/master/example/images/example1.png) |![Example Animated](https://raw.githubusercontent.com/underwhelmingToaster/progress_tab_bar/master/example/images/example2.gif)
+<img src="https://raw.githubusercontent.com/underwhelmingToaster/progress_tab_bar/master/example/images/example1.png" alt="Example 1" width="300"/>
+
+<img src="https://raw.githubusercontent.com/underwhelmingToaster/progress_tab_bar/master/example/images/example1.png" width="300"/> |<img src="https://raw.githubusercontent.com/underwhelmingToaster/progress_tab_bar/master/example/images/example2.gif" width="300"/>
 ----------|----------
 Demo App | Animated Demo
 
