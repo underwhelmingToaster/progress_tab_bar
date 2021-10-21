@@ -158,23 +158,29 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     double xPos = 0;
     for (int i = 0; i < tabButtons.length; i++) {
       positionedTabs.add(Positioned(left: xPos, child: tabButtons[i]));
-      xPos += tabButtons[i].width - 31 + buttonSpacing;
+      xPos += (widget.tabWidth - widget.tabWidth * 0.3 / 2) + buttonSpacing + widget.outlineWidth / 2;
     }
     return Stack(
       children: positionedTabs,
     );
   }
 
-  double _calculateLength(ProgressTabBar widget) { // TODO better lenght
-    return widget.children.length * (widget.tabWidth - 20) // Space for tabs
+  double _calculateLength(ProgressTabBar widget) { // TODO better length
+    return (widget.tabWidth - widget.tabWidth * 0.3 / 2 // Space for tabs
         +
-        (widget.children.length - 1) * widget.spacing // Space for spacing
+        widget.spacing) // Space for spacing
+        *
+        widget.children.length // Times the number of tabs
         +
-        (widget.tabWidth / 200) * 12; // Space for padding at end
+        (widget.tabWidth / 200) * 40; // Space for padding at end
   }
 
-  double _calculateScrollOffset (ProgressTabBar widget){
-    return (widget.tabWidth - widget.tabWidth * 0.25 / 2 + widget.spacing / 2) * (widget.selectedTab! - 1) + widget.tabWidth / 2; // TODO better autocenter
+  double _calculateScrollOffset (ProgressTabBar widget){ // TODO better autocenter
+    return (widget.tabWidth - widget.tabWidth * 0.3 / 2  // Tab width
+        +
+        widget.spacing) // Tab Spacing
+        *
+        (widget.selectedTab!); // Times the index of selected tab
   }
 }
 

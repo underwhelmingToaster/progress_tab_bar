@@ -13,7 +13,7 @@ class ButtonPainter extends CustomPainter {
     this.label = "",
     this.isFirst = false,
     this.filled = false,
-    this.strokeWidth = 2.5,
+    this.strokeWidth = 2,
     this.labelColor = Colors.black,
   });
 

@@ -40,8 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.only(top: 16, bottom: 8),
             child: ProgressTabBar(
-              tabWidth: 150,
-              height: 100,
+              tabWidth: 125,
+              height: 64,
               spacing: 20,
               selectedTab: _selectedTab,
               children: [
