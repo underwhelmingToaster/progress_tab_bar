@@ -1,7 +1,6 @@
 library progress_tab_bar;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_tab_bar/src/progress_tab_button.dart';
 
@@ -73,8 +72,7 @@ class ProgressTabBar extends StatefulWidget {
       this.scrollPhysics,
       this.autoCenter = true,
       this.animationDuration = const Duration(milliseconds: 600),
-      this.animationCurve = Curves.fastOutSlowIn
-      })
+      this.animationCurve = Curves.fastOutSlowIn})
       : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
@@ -87,10 +85,13 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    if(_scrollController.hasClients){
-      if(widget.autoCenter && widget.selectedTab != null && widget.animationDuration != Duration.zero){
-        _scrollController.animateTo(_calculateScrollOffset(widget), duration: widget.animationDuration, curve: widget.animationCurve);
-      } else if(widget.animationDuration == Duration.zero){
+    if (_scrollController.hasClients) {
+      if (widget.autoCenter &&
+          widget.selectedTab != null &&
+          widget.animationDuration != Duration.zero) {
+        _scrollController.animateTo(_calculateScrollOffset(widget),
+            duration: widget.animationDuration, curve: widget.animationCurve);
+      } else if (widget.animationDuration == Duration.zero) {
         _scrollController.jumpTo(_calculateScrollOffset(widget));
       }
     }
@@ -158,27 +159,31 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     double xPos = 0;
     for (int i = 0; i < tabButtons.length; i++) {
       positionedTabs.add(Positioned(left: xPos, child: tabButtons[i]));
-      xPos += (widget.tabWidth - widget.tabWidth * 0.3 / 2) + buttonSpacing + widget.outlineWidth / 2;
+      xPos += (widget.tabWidth - widget.tabWidth * 0.3 / 2) +
+          buttonSpacing +
+          widget.outlineWidth / 2;
     }
     return Stack(
       children: positionedTabs,
     );
   }
 
-  double _calculateLength(ProgressTabBar widget) { // TODO better length
-    return (widget.tabWidth - widget.tabWidth * 0.3 / 2 // Space for tabs
-        +
-        widget.spacing) // Space for spacing
-        *
-        widget.children.length // Times the number of tabs
+  double _calculateLength(ProgressTabBar widget) {
+    return (widget.tabWidth -
+                widget.tabWidth * 0.3 / 2 // Space for tabs
+                +
+                widget.spacing) // Space for spacing
+            *
+            widget.children.length // Times the number of tabs
         +
         (widget.tabWidth / 200) * 40; // Space for padding at end
   }
 
-  double _calculateScrollOffset (ProgressTabBar widget){ // TODO better autocenter
-    return (widget.tabWidth - widget.tabWidth * 0.3 / 2  // Tab width
-        +
-        widget.spacing) // Tab Spacing
+  double _calculateScrollOffset(ProgressTabBar widget) {
+    return (widget.tabWidth -
+            widget.tabWidth * 0.3 / 2 // Tab width
+            +
+            widget.spacing) // Tab Spacing
         *
         (widget.selectedTab!); // Times the index of selected tab
   }

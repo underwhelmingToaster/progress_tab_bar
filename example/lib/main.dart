@@ -113,8 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-
   Widget content(int tabNr) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
