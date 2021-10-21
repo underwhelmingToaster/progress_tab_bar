@@ -55,8 +55,14 @@ class ProgressTabBar extends StatefulWidget {
   final Duration animationDuration;
 
   /// Set a [Curve] for the auto center animation.
-  /// Only takes effect when [autCenter] is true. Defaults to [Curves.fastOutSlowIn].
+  /// Only takes effect when [autoCenter] is true. Defaults to [Curves.fastOutSlowIn].
   final Curve animationCurve;
+
+  /// The offset for the auto-center feature.
+  /// The offset is in pixels from the left side of the widget. For example,
+  /// when the previous step should still be visible, set the offset to the
+  /// length of a tab plus a bit of margin. Defaults to 10.0.
+  final double autoScrollOffset;
 
   const ProgressTabBar(
       {Key? key,
@@ -71,6 +77,7 @@ class ProgressTabBar extends StatefulWidget {
       this.selectedTab,
       this.scrollPhysics,
       this.autoCenter = true,
+      this.autoScrollOffset = 10,
       this.animationDuration = const Duration(milliseconds: 600),
       this.animationCurve = Curves.fastOutSlowIn})
       : height = height ?? tabWidth * 0.3076923076923077,
@@ -185,7 +192,9 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
             +
             widget.spacing) // Tab Spacing
         *
-        (widget.selectedTab!); // Times the index of selected tab
+        (widget.selectedTab!) // Times the index of selected tab
+        -
+        widget.autoScrollOffset; // The offset set by the user
   }
 }
 

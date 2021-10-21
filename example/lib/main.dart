@@ -44,58 +44,59 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 64,
               spacing: 20,
               selectedTab: _selectedTab,
+              autoScrollOffset: 135,
               children: [
                 ProgressTab(
-                    label: "Label 0",
+                    label: "Step 1",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 0;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 1",
+                    label: "Step 2",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 1;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 2",
+                    label: "Step 3",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 2;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 3",
+                    label: "Step 4",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 3;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 4",
+                    label: "Step 5",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 4;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 5",
+                    label: "Step 6",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 5;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 6",
+                    label: "Step 7",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 6;
                       });
                     }),
                 ProgressTab(
-                    label: "Label 7",
+                    label: "Step 8",
                     onPressed: () {
                       setState(() {
                         _selectedTab = 7;
