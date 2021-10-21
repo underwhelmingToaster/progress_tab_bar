@@ -20,3 +20,10 @@
 * Improved auto-center accuracy
 * Adjusted arrow shape slightly
 
+## 0.1.3
+
+* Implemented auto-scroll offset
+* Added color configuration for the tabs
+* Improved example
+* Improved README
+
