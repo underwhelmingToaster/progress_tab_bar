@@ -28,7 +28,7 @@ class ProgressTabBar extends StatefulWidget {
   final double outlineWidth;
 
   /// [color] sets the color of the tab-outline as well as the tab color when tab
-  /// is selected.
+  /// is selected. Defaults to the primary color of the current [Theme].
   final Color? color;
 
   /// [labelColor] defines the color of the text in a not selected tab.
@@ -188,11 +188,11 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
 
   double _calculateScrollOffset(ProgressTabBar widget) {
     return (widget.tabWidth -
-            widget.tabWidth * 0.3 / 2 // Tab width
-            +
-            widget.spacing) // Tab Spacing
-        *
-        (widget.selectedTab!) // Times the index of selected tab
+                widget.tabWidth * 0.3 / 2 // Tab width
+                +
+                widget.spacing) // Tab Spacing
+            *
+            (widget.selectedTab!) // Times the index of selected tab
         -
         widget.autoScrollOffset; // The offset set by the user
   }

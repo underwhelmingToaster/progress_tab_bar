@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Progress Tabs Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey
-      ),
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
       home: const MyHomePage(title: 'Progress Tabs Demo'),
       debugShowCheckedModeBanner: false,
     ); // Color.fromARGB(255, 141, 153, 174)

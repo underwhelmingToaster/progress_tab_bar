@@ -10,14 +10,13 @@ class ButtonPainter extends CustomPainter {
   Color labelColor;
   Color buttonColor;
 
-  ButtonPainter({
-    this.label = "",
-    this.isFirst = false,
-    this.filled = false,
-    this.strokeWidth = 2,
-    this.labelColor = Colors.black,
-    required this.buttonColor
-  });
+  ButtonPainter(
+      {this.label = "",
+      this.isFirst = false,
+      this.filled = false,
+      this.strokeWidth = 2,
+      this.labelColor = Colors.black,
+      required this.buttonColor});
 
   @override
   void paint(Canvas canvas, Size size) {
