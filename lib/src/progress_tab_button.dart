@@ -39,7 +39,9 @@ class ProgressTabButton extends StatelessWidget {
             isFirst: _isFirst,
             strokeWidth: outlineWidth,
             labelColor: labelColor,
-            filled: filled),
+            filled: filled,
+          buttonColor: color
+        ),
       ),
       onPressed: onPressed,
     );

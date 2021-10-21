@@ -8,6 +8,7 @@ class ButtonPainter extends CustomPainter {
   bool filled;
   double strokeWidth;
   Color labelColor;
+  Color buttonColor;
 
   ButtonPainter({
     this.label = "",
@@ -15,6 +16,7 @@ class ButtonPainter extends CustomPainter {
     this.filled = false,
     this.strokeWidth = 2,
     this.labelColor = Colors.black,
+    required this.buttonColor
   });
 
   @override
@@ -26,7 +28,7 @@ class ButtonPainter extends CustomPainter {
     }
 
     Paint arrow = new Paint()
-      ..color = Color.fromARGB(255, 33, 150, 243)
+      ..color = buttonColor
       ..style = paintingStyle
       ..strokeWidth = strokeWidth;
 
