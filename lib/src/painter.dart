@@ -34,17 +34,17 @@ class ButtonPainter extends CustomPainter {
     if (isFirst) {
       arrowPath.moveTo(size.width * 0.08, 0);
       arrowPath.lineTo(size.width * 0.08, size.height);
-      arrowPath.lineTo(size.width * 0.8461538, size.height);
-      arrowPath.lineTo(size.width, size.height * 0.5000000);
-      arrowPath.lineTo(size.width * 0.8461538, 0);
+      arrowPath.lineTo(size.width * 0.85, size.height);
+      arrowPath.lineTo(size.width, size.height * 0.5);
+      arrowPath.lineTo(size.width * 0.85, 0);
       arrowPath.close();
     } else {
       arrowPath.moveTo(0, 0);
-      arrowPath.lineTo(size.width * 0.1538462, size.height * 0.5000000);
+      arrowPath.lineTo(size.width * 0.15, size.height * 0.5);
       arrowPath.lineTo(0, size.height);
-      arrowPath.lineTo(size.width * 0.8461538, size.height);
-      arrowPath.lineTo(size.width, size.height * 0.5000000);
-      arrowPath.lineTo(size.width * 0.8461538, 0);
+      arrowPath.lineTo(size.width * 0.85, size.height);
+      arrowPath.lineTo(size.width, size.height * 0.5);
+      arrowPath.lineTo(size.width * 0.85, 0);
       arrowPath.close();
     }
     canvas.drawPath(arrowPath, arrow);
