@@ -12,9 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Progress Tabs Demo',
-      theme: ThemeData(),
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey
+      ),
       home: const MyHomePage(title: 'Progress Tabs Demo'),
-    );
+      debugShowCheckedModeBanner: false,
+    ); // Color.fromARGB(255, 141, 153, 174)
   }
 }
 
@@ -117,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget content(int tabNr) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Center(child: Text("This is Page Nr. ${tabNr.toString()}")),
+      child: Center(child: Text("This is Page Nr. ${(++tabNr).toString()}")),
     );
   }
 }
