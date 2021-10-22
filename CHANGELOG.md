@@ -27,3 +27,7 @@
 * Improved example
 * Improved README
 
+## 0.1.4
+
+* Implemented the 'disabled' feature
+

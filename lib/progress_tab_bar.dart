@@ -85,7 +85,7 @@ class ProgressTabBar extends StatefulWidget {
     this.autoScrollOffset = 10,
     this.animationDuration = const Duration(milliseconds: 600),
     this.animationCurve = Curves.fastOutSlowIn,
-    this.disabled = true,
+    this.disabled = false,
   })  : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
@@ -102,7 +102,6 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     Color? _labelColor;
     ScrollPhysics? _physics;
 
-
     if (_scrollController.hasClients) {
       if (widget.autoCenter &&
           widget.selectedTab != null &&
@@ -114,11 +113,11 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
       }
     }
 
-    if(widget.disabled){
+    if (widget.disabled) {
       _color = Theme.of(context).disabledColor;
       _labelColor = Theme.of(context).disabledColor;
       _physics = NeverScrollableScrollPhysics();
-    }else {
+    } else {
       _physics = widget.scrollPhysics;
       _color = widget.color ?? Theme.of(context).primaryColor;
     }
@@ -169,7 +168,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
       }
 
       late final void Function() _onPressed;
-      if(disabled) {
+      if (disabled) {
         _onPressed = () {};
       } else {
         _onPressed = tabs[i].onPressed;
