@@ -64,23 +64,29 @@ class ProgressTabBar extends StatefulWidget {
   /// length of a tab plus a bit of margin. Defaults to 10.0.
   final double autoScrollOffset;
 
-  const ProgressTabBar(
-      {Key? key,
-      required this.children,
-      this.tabWidth = 200,
-      double? height,
-      this.spacing = 15,
-      this.outlineWidth = 2,
-      this.color,
-      this.labelColor,
-      this.selectedLabelColor = Colors.white,
-      this.selectedTab,
-      this.scrollPhysics,
-      this.autoCenter = true,
-      this.autoScrollOffset = 10,
-      this.animationDuration = const Duration(milliseconds: 600),
-      this.animationCurve = Curves.fastOutSlowIn})
-      : height = height ?? tabWidth * 0.3076923076923077,
+  /// When set to true, the tab bar gets disabled.
+  /// All tabs will get greyed out and the bar can't be scrolled anymore.
+  /// [ProgressTab.onPressed] will not be executed when [disabled] is true.
+  final bool disabled;
+
+  const ProgressTabBar({
+    Key? key,
+    required this.children,
+    this.tabWidth = 200,
+    double? height,
+    this.spacing = 15,
+    this.outlineWidth = 2,
+    this.color,
+    this.labelColor,
+    this.selectedLabelColor = Colors.white,
+    this.selectedTab,
+    this.scrollPhysics,
+    this.autoCenter = true,
+    this.autoScrollOffset = 10,
+    this.animationDuration = const Duration(milliseconds: 600),
+    this.animationCurve = Curves.fastOutSlowIn,
+    this.disabled = true,
+  })  : height = height ?? tabWidth * 0.3076923076923077,
         super(key: key);
 
   @override
@@ -92,6 +98,11 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    Color? _color;
+    Color? _labelColor;
+    ScrollPhysics? _physics;
+
+
     if (_scrollController.hasClients) {
       if (widget.autoCenter &&
           widget.selectedTab != null &&
@@ -103,8 +114,17 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
       }
     }
 
+    if(widget.disabled){
+      _color = Theme.of(context).disabledColor;
+      _labelColor = Theme.of(context).disabledColor;
+      _physics = NeverScrollableScrollPhysics();
+    }else {
+      _physics = widget.scrollPhysics;
+      _color = widget.color ?? Theme.of(context).primaryColor;
+    }
+
     return SingleChildScrollView(
-        physics: widget.scrollPhysics,
+        physics: _physics,
         controller: _scrollController,
         scrollDirection: Axis.horizontal,
         child: SizedBox(
@@ -119,9 +139,10 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
                       height: widget.height,
                       outlineWidth: widget.outlineWidth,
                       selectedTab: widget.selectedTab,
-                      color: widget.color,
-                      labelColor: widget.labelColor,
+                      color: _color,
+                      labelColor: _labelColor,
                       selectedLabelColor: widget.selectedLabelColor,
+                      disabled: widget.disabled,
                       context: context),
                   widget.spacing),
             )));
@@ -133,9 +154,10 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
       required double height,
       required double outlineWidth,
       int? selectedTab,
-      Color? color,
+      required Color color,
       Color? labelColor,
       Color? selectedLabelColor,
+      bool disabled = false,
       required BuildContext context}) {
     List<ProgressTabButton> tabButtons = List.empty(growable: true);
     for (int i = 0; i < tabs.length; i++) {
@@ -145,15 +167,23 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
         _tabLabelColor = selectedLabelColor ?? _tabLabelColor;
         _filled = true;
       }
+
+      late final void Function() _onPressed;
+      if(disabled) {
+        _onPressed = () {};
+      } else {
+        _onPressed = tabs[i].onPressed;
+      }
+
       tabButtons.add(ProgressTabButton(
         width: width,
         height: height,
-        onPressed: tabs[i].onPressed,
+        onPressed: _onPressed,
         label: tabs[i].label ?? "",
         position: i,
         outlineWidth: outlineWidth,
         labelColor: _tabLabelColor,
-        color: color ?? Theme.of(context).primaryColor,
+        color: color,
         filled: _filled,
       ));
     }

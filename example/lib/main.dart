@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Progress Tabs Demo',
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      theme: ThemeData(primarySwatch: Colors.red),
       home: const MyHomePage(title: 'Progress Tabs Demo'),
       debugShowCheckedModeBanner: false,
-    ); // Color.fromARGB(255, 141, 153, 174)
+    );
   }
 }
 
@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedTab = 0;
+  bool _disabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               spacing: 20,
               selectedTab: _selectedTab,
               autoScrollOffset: 135,
+              disabled: _disabled,
               children: [
                 ProgressTab(
                     label: "Step 1",
@@ -116,9 +118,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget content(int tabNr) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Center(child: Text("This is Page Nr. ${(++tabNr).toString()}")),
+    return Column(
+      children: [
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Disable tab progress bar"),
+              Checkbox(
+                value: _disabled,
+                onChanged: (bool? value) {
+                  setState(() {
+                    _disabled = value ?? false;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 32),
+          child:
+              Center(child: Text("This is Page Nr. ${(++tabNr).toString()}")),
+        )
+      ],
     );
   }
 }
