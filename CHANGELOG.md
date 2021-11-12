@@ -31,3 +31,9 @@
 
 * Implemented the 'disabled' feature
 
+## 0.1.5
+
+* Adjusted padding after last item
+* Fixed labelColor property
+* Fixed default label colors for dark mode 
+

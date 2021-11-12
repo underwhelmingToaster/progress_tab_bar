@@ -69,13 +69,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  flutter_shapes:
-    dependency: transitive
-    description:
-      name: flutter_shapes
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -115,7 +108,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.4"
   sky_engine:
     dependency: transitive
     description: flutter
