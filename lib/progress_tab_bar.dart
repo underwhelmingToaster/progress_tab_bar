@@ -120,6 +120,8 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
     } else {
       _physics = widget.scrollPhysics;
       _color = widget.color ?? Theme.of(context).primaryColor;
+      _labelColor =
+          widget.labelColor ?? Theme.of(context).textTheme.bodyText1!.color;
     }
 
     return SingleChildScrollView(
@@ -212,7 +214,7 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
             *
             widget.children.length // Times the number of tabs
         +
-        (widget.tabWidth / 200) * 40; // Space for padding at end
+        (widget.tabWidth / 200) * 20; // Space for padding at end
   }
 
   double _calculateScrollOffset(ProgressTabBar widget) {
