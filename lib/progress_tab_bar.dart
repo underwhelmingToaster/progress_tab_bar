@@ -1,5 +1,7 @@
 library progress_tab_bar;
 
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_tab_bar/src/progress_tab_button.dart';
@@ -26,6 +28,10 @@ class ProgressTabBar extends StatefulWidget {
 
   /// [outlineWidth] sets the size of the outline when a tab is not selected
   final double outlineWidth;
+
+  /// [endMargin] is is the margin after the last [ProgressTabButton].
+  /// Can also be negative.
+  final double? endMargin;
 
   /// [color] sets the color of the tab-outline as well as the tab color when tab
   /// is selected. Defaults to the primary color of the current [Theme].
@@ -76,6 +82,7 @@ class ProgressTabBar extends StatefulWidget {
     double? height,
     this.spacing = 15,
     this.outlineWidth = 2,
+    this.endMargin,
     this.color,
     this.labelColor,
     this.selectedLabelColor = Colors.white,
@@ -208,13 +215,15 @@ class _ProgressTabBarState extends State<ProgressTabBar> {
 
   double _calculateLength(ProgressTabBar widget) {
     return (widget.tabWidth -
-                widget.tabWidth * 0.3 / 2 // Space for tabs
+                widget.tabWidth * 0.29 / 2 // Space for tabs
                 +
-                widget.spacing) // Space for spacing
+                widget.spacing +
+                1) // Space for spacing
             *
             widget.children.length // Times the number of tabs
         +
-        (widget.tabWidth / 200) * 20; // Space for padding at end
+        (widget.endMargin ??
+            (widget.tabWidth / 200) * 20); // Space for padding at end
   }
 
   double _calculateScrollOffset(ProgressTabBar widget) {

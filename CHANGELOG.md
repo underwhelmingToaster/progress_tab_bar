@@ -37,3 +37,8 @@
 * Fixed labelColor property
 * Fixed default label colors for dark mode 
 
+## 0.1.5
+
+* Added endMargin parameter
+* Minor length fine tunes
+
