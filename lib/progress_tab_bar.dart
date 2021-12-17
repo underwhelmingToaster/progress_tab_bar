@@ -1,8 +1,5 @@
 library progress_tab_bar;
 
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_tab_bar/src/progress_tab_button.dart';
 

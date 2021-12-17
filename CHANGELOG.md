@@ -42,3 +42,10 @@
 * Added endMargin parameter
 * Minor length fine tunes
 
+## 0.1.6
+
+* Minor adjustments
+
+## 0.1.7
+
+* Fixed compatibility issues for web apps
